@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import AutoComplete from './autocomplete';
 
 function Root() {
   return(
 
     <div>
-      test
+      <AutoComplete />
+      React is live!
     </div>
   );
 }
