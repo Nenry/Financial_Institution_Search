@@ -1,4 +1,4 @@
 var jsonFile = require('./products.json');
 
 
-console.log(jsonFile);
+console.log(jsonFile.products);
