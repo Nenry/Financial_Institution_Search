@@ -7,7 +7,6 @@ function Root() {
 
     <div>
       <AutoComplete />
-      React is live!
     </div>
   );
 }
