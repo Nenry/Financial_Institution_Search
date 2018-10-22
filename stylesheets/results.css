@@ -1,9 +1,33 @@
 .search-results {
-  background-color: rgb(118, 118, 184);
+  list-style-type: none;
+  padding-left: 0px;
+  width: 80.6%;
+  margin: 0px; 
+  border: 0.5px solid rgb(196, 193, 193);
 }
 
-
+/* 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
+  width: 65%;
+} */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  align-items: center;
+}
+
+.search-term {
+  width: 80%;
+  /* border-bottom: 0px; */
+}
+
+#main {
+  display: flex;
+  justify-content: center;
 }
