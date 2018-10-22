@@ -15,7 +15,7 @@ class AutoComplete extends React.Component {
 
   matches() {
         if (this.state.inputType.length === 0 && this.state.inputTerm.length === 0) {
-          return jsonFile.products;
+          return; 
 
         } else if (this.state.inputType.length === 0) {
           return (
@@ -25,7 +25,7 @@ class AutoComplete extends React.Component {
             )
           );
 
-        } else {
+        } else if (this.state.inputType.length > 0 && this.state.inputTerm.length > 0) {
           return (
 
             jsonFile.products.filter((obj) =>
@@ -42,8 +42,9 @@ class AutoComplete extends React.Component {
     //
 
   render() {
+    const results = this.matches();
     return (
-      <div>
+      <div className='wrapper'>
         <label>Search:</label>
         <input onChange={(e) => this.handleInput(e)} value={this.state.inputTerm} />
           <label>Type:</label>
@@ -54,12 +55,15 @@ class AutoComplete extends React.Component {
           <option value='INVESTMENT'>Investment</option>
           <option value='LOAN'>Loan</option>
         </select>
-        <ul>
-          {this.matches().map((entity, idx) => 
+        <ul className='search-results'>
+
+          {results ? results.map((entity, idx) => 
             <li key={idx}>
               {entity.name}
             </li>
-          )}
+          )
+          : ""
+        }
 
         </ul>
 

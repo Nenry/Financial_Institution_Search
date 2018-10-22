@@ -1,0 +1,9 @@
+.search-results {
+  background-color: rgb(118, 118, 184);
+}
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
