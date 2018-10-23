@@ -5,11 +5,11 @@ It is a single-page application that allow users to search for financial institu
 
 ## How to install
 1. Have NPM and Webpack installed.
-2. Download this repo. 
-3. Navigate in terminal to the downloaded path of this repo
-4. Run "npm install" (Will install the necessary libraries to run)
-5. Run "npm start" (Will create your bundle.js for react)
-6. Open index.html file in your browser (I used Google Chrome)
+2. Download this repo.
+3. Navigate in terminal to the downloaded path of this repo.
+4. Run "npm install" (Will install the necessary libraries to run).
+5. Run "npm start" (Will create your bundle.js for react).
+6. Open index.html file in your browser (I used Google Chrome).
 7. Viola! It should be up and running.
 
 ## How to use
