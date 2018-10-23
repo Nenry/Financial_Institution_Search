@@ -1,7 +1,7 @@
 # Financial Institution Search
 
 ## What is it?
-It is a single-page application that allow users to search for financial institutions by name and types. The data is currently prepopulated in a JSON format and provided by [Personal Capital](https://www.personalcapital.com/). Axios or AJAX methods can also be integrated to create a live database. The main technologies used to create this application was React and JavaScript. React was necessary in this application to create a smooth dynamic autocomplete feature.
+It is a single-page application that allow users to search for financial institutions by names and types. The data is currently prepopulated in a JSON format and provided by [Personal Capital](https://www.personalcapital.com/). Axios or AJAX methods can also be integrated to create a live database. The main technologies used to create this application was React and JavaScript. React was necessary in this application to create a smooth dynamic autocomplete feature.
 
 ## How to install
 1. Have NPM and Webpack installed.
