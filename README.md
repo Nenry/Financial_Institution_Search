@@ -1,4 +1,4 @@
-#Financial Institution Search
+# Financial Institution Search
 
 ## What is it?
 It is a single-page application that allow users to search for financial institutions by name and types. The data is currently prepopulated in a JSON format and loaded to work instantly. Axios or AJAX methods can also be integrated to create a live database. The main technologies used to create this application was React and JavaScript.
