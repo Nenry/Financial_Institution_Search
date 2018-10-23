@@ -14,83 +14,83 @@ class AutoComplete extends React.Component {
   }
 
   matches() {
-
       const results = {};
-        if (this.state.inputType.length === 0 && this.state.inputTerm.length === 0) {
+      //Used a hash to get rid of any duplicates from JSON file
+        if (this.state.inputTerm.length === 0) {
           return; 
 
-        } else if (this.state.inputType.length === 0) {
-
-
-          jsonFile.products.forEach((obj) => {
-            if (obj.name.toLowerCase().includes(this.state.inputTerm.toLowerCase())) {
-              results[obj.name] = obj.url;
+        } else {
+          const types = new Set(['banks', 'loans', 'credit_cards', 'investments', 'mortgages']);
+          //Common to type plural versions
+          //Regex could probably be used here if types keep increasing
+          jsonFile.products.forEach((product) => {
+            let term = this.state.inputTerm;
+            if (term === 'credit cards' || term === 'credit card') {
+              term = 'credit_cards';
             }
-          });
-          // return (
 
-          //   jsonFile.products.filter((obj) =>
-          //   obj.name.toLowerCase().includes(this.state.inputTerm.toLowerCase())
-          //   )
-          // );
+            const lowercasedInputTerm = term.toLowerCase();
+            const isMatchName = product.name.toLowerCase().includes(lowercasedInputTerm);
+            const isMatchType = product.type.toLowerCase().includes(lowercasedInputTerm) || types.has(lowercasedInputTerm);
+            
+            if (this.state.inputType.length === 0 ) {
+              //if there is no specified filter, look for matching terms in the name or the type
+              if (isMatchName) {
+                results[product.name] = product.url;
+              }
+              if (isMatchType) {
+                results[product.name] = product.url;
+              }
 
-        } else if (this.state.inputType.length > 0 && this.state.inputTerm.length > 0) {
-          jsonFile.products.forEach((obj) => {
-            if (obj.name.toLowerCase().includes(this.state.inputTerm.toLowerCase()) &&
-            obj.type === this.state.inputType) {
-              results[obj.name] = obj.url;
+            } else {
+              //search for matching name and type
+              if (isMatchName && product.type === this.state.inputType) {
+                results[product.name] = product.url;
+              }
             }
+            
+            
           });
         }
-            // return (
-
-            // // jsonFile.products.filter((obj) =>
-            // // obj.name.toLowerCase().includes(this.state.inputTerm.toLowerCase()) &&
-            // // obj.type === this.state.inputType
-            // // )
-            
-            // );
         return results;
   }
-        
-    
-    //match names
-    //match type
-    //
+   
+
 
   render() {
     const results = this.matches();
     return (
       <div className='wrapper'>
-    
 
-  
-          <label>Type</label>
+        <h1 className='search-title'>Financial Institution Search</h1>
+          
+        <div className='search-wrapper'>
 
-          <select onChange={(e) => this.setState({inputType: e.target.value})}>
-            <option value=''>All</option>
-            <option value='BANK'>Bank</option>
-            <option value='CREDIT_CARD'>Credit Card</option>
-            <option value='INVESTMENT'>Investment</option>
-            <option value='LOAN'>Loan</option>
-          </select>
-          <label>Search</label>
-          <input className='search-term' onChange={(e) => this.handleInput(e)} 
-          value={this.state.inputTerm} placeholder='Type name here'/>
-    
-        <ul className='search-results'>
+            <input className='search-term' onChange={(e) => this.handleInput(e)} 
+            value={this.state.inputTerm} placeholder='Search names and types here'/>
 
-          {results ? Object.keys(results).map((name, idx) => 
-            <li key={idx}>
-              <a href={results[name]}>
-              {name}
-              </a>
-            </li>
-          )
-          : ""
-        }
+            <select className='search-type' onChange={(e) => this.setState({inputType: e.target.value})}>
+              <option value=''>Filter by type</option>
+              <option value='BANK'>Bank</option>
+              <option value='CREDIT_CARD'>Credit Card</option>
+              <option value='INVESTMENT'>Investment</option>
+              <option value='LOAN'>Loan</option>
+            </select>
+      
+          <ul className='search-results'>
 
-        </ul>
+            {results ? Object.keys(results).map((name, idx) => 
+                <li key={idx}>
+                  <a href={results[name]}>
+                  {name}
+                  </a>
+                </li>
+              )
+              : ""
+            }
+
+          </ul>
+        </div>
 
       </div>
     );
